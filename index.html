@@ -28,6 +28,42 @@
   <!-- Shared 4D background engine (Three.js, CDN, deferred so it never blocks render) -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script defer src="background.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://topleadrecruit.com/#org",
+        "name": "TopLead Recruitment",
+        "url": "https://topleadrecruit.com",
+        "logo": "https://topleadrecruit.com/android-chrome-512x512.png",
+        "description": "Đối tác tuyển dụng có trách nhiệm cho doanh nghiệp SME Việt Nam. Sàng lọc hai chiều, gửi shortlist trong 48 giờ, chỉ tính phí khi ứng viên vượt qua thử việc.",
+        "email": "andy.ta@topleadrecruit.com",
+        "telephone": "+84839550411",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "791/92F Trần Xuân Soạn, phường Tân Hưng",
+          "addressLocality": "TP. Hồ Chí Minh",
+          "addressCountry": "VN"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/toplead-recruitment/",
+          "https://www.facebook.com/profile.php?id=61590977005814",
+          "https://www.instagram.com/toplead.b/"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://topleadrecruit.com/#website",
+        "url": "https://topleadrecruit.com",
+        "name": "TopLead Recruitment",
+        "publisher": { "@id": "https://topleadrecruit.com/#org" },
+        "inLanguage": "vi-VN"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Shared interactive background canvas (persists behind every section) -->
@@ -45,6 +81,7 @@
       <div class="nav-right">
         <div class="nav-links">
           <a href="index.html" class="active" data-i18n="nav.home">Trang chủ</a>
+          <a href="services.html" data-i18n="nav.services">Dịch vụ</a>
           <div class="nav-dropdown">
             <a href="about.html" class="nav-dropdown-trigger" data-i18n="nav.about">Về chúng tôi</a>
             <div class="nav-dropdown-menu">
@@ -62,7 +99,6 @@
               <a href="approach.html#exclusive" data-i18n="nav.exclusive">Độc quyền</a>
             </div>
           </div>
-          <a href="services.html" data-i18n="nav.services">Dịch vụ</a>
           <a href="jobs.html" data-i18n="nav.jobs">Việc làm</a>
           <a href="tools.html" data-i18n="nav.tools">Blog</a>
           <a href="contact.html" class="btn-cta" data-i18n="nav.contact">Liên hệ</a>
@@ -341,37 +377,6 @@
             <h3 data-i18n="partner.v2.title">Tìm kiếm chủ động</h3>
             <p data-i18n="partner.v2.desc">Không chờ ứng viên ứng tuyển - chúng tôi chủ động tìm và tiếp cận đúng người.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Philosophy band -->
-  <section class="philosophy">
-    <div class="philosophy-bg"></div>
-    <div class="container">
-      <div class="philosophy-grid">
-        <figure class="philosophy-media phil-carousel" data-autoplay="4600">
-          <div class="phil-slides">
-            <img class="phil-slide is-active" src="assets/gen/philosophy/1.jpg" alt="TopLead - buổi tư vấn tuyển dụng, lắng nghe và thấu hiểu doanh nghiệp" loading="lazy">
-            <img class="phil-slide" src="assets/gen/philosophy/2.jpg" alt="TopLead - buổi tư vấn tuyển dụng, lắng nghe và thấu hiểu doanh nghiệp" loading="lazy">
-            <img class="phil-slide" src="assets/gen/philosophy/3.jpg" alt="TopLead - buổi tư vấn tuyển dụng, lắng nghe và thấu hiểu doanh nghiệp" loading="lazy">
-            <img class="phil-slide" src="assets/gen/philosophy/4.jpg" alt="TopLead - buổi tư vấn tuyển dụng, lắng nghe và thấu hiểu doanh nghiệp" loading="lazy">
-          </div>
-          <span class="phil-media-scrim" aria-hidden="true"></span>
-          <span class="phil-seal" aria-hidden="true"><img src="assets/images/logo-mark.png" alt=""></span>
-          <div class="phil-dots" role="tablist" aria-label="Chọn ảnh"></div>
-          <figcaption class="phil-media-caption">
-            <span class="phil-caption-rule" aria-hidden="true"></span>
-            <span data-i18n="phil.caption">Người thật. Doanh nghiệp thật. Kết quả ở lại.</span>
-          </figcaption>
-        </figure>
-        <div class="philosophy-text">
-          <span class="phil-eyebrow" data-i18n="phil.eyebrow">Triết lý của chúng tôi</span>
-          <span class="phil-accent-line" aria-hidden="true"></span>
-          <blockquote class="philosophy-quote" data-i18n="philosophy.quote">Nhân sự không phải là chi phí - đó là động cơ của mọi thứ theo sau.</blockquote>
-          <p class="phil-body" data-i18n="phil.body">Chúng tôi tuyển người phù hợp để ở lại và phát triển - không chỉ để lấp chỗ trống.</p>
-          <a class="btn-ghost" href="approach.html" data-i18n="phil.cta">Tìm hiểu cách chúng tôi làm việc</a>
         </div>
       </div>
     </div>

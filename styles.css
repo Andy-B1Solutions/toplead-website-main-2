@@ -5520,9 +5520,9 @@ img, video { max-width: 100%; }
 
 /* --- Dark sections become semi-transparent so the shared field shows through.
    Opacity kept high enough to preserve WCAG-AA contrast for the light text. --- */
-.showcase   { background: linear-gradient(165deg, rgba(42,26,16,0.74), rgba(18,15,12,0.82)); }
-.partner    { background: linear-gradient(160deg, rgba(42,26,16,0.74) 0%, rgba(20,16,13,0.84) 100%); }
-.philosophy { background: rgba(18,15,12,0.72); }
+body:has(#bg-canvas) .showcase   { background: linear-gradient(165deg, rgba(42,26,16,0.74), rgba(18,15,12,0.82)); }
+body:has(#bg-canvas) .partner    { background: linear-gradient(160deg, rgba(42,26,16,0.74) 0%, rgba(20,16,13,0.84) 100%); }
+body:has(#bg-canvas) .philosophy { background: rgba(18,15,12,0.72); }
 
 /* --- Pill CTAs with magnetic hover (JS drives the transform) --- */
 .hero .btn-primary {
@@ -8590,4 +8590,26 @@ p { line-height: 1.65; }
 .cpx-success p{color:var(--text-muted);font-size:.92rem;}
 @media (max-width:480px){.cpx-overlay{padding:0;align-items:flex-end;}.cpx-modal{max-width:100%;border-radius:18px 18px 0 0;padding:22px 18px;}}
 @media (prefers-reduced-motion:reduce){.cpx-overlay,.cpx-modal{transition:none;}}
+
+/* Philosophy section now lives on the (light) About page -> white ground, dark text */
+.philosophy { background: var(--bg-beige); }
+.philosophy-bg { background: radial-gradient(ellipse at 50% 0%, rgba(160,82,45,0.07), transparent 62%); }
+.philosophy-quote { color: #2A2118; }
+.phil-body { color: var(--text-muted); }
+.phil-eyebrow { color: var(--copper); }
+.phil-accent-line { background: linear-gradient(90deg, var(--copper), transparent); }
+.philosophy-mark { mix-blend-mode: normal; }
+.philosophy .btn-ghost { color: var(--copper-dark); border-color: rgba(160,82,45,0.45); }
+.philosophy .btn-ghost:hover { background: var(--copper); color: #fff; border-color: var(--copper); }
+
+/* Mobile menu: the "Liên hệ" CTA was a small cramped button next to full-width
+   links. Make it a proper full-width CTA so it no longer looks narrow. */
+.nav-links.active .btn-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 14px 24px;
+  margin-top: 6px;
+  border-radius: 12px;
+}
 
