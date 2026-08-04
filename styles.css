@@ -8613,3 +8613,7 @@ p { line-height: 1.65; }
   border-radius: 12px;
 }
 
+/* Post figure — video variant (SECC field report) */
+.post-figure--video{height:auto;background:#14100c;}
+.post-figure--video video{display:block;width:100%;height:auto;max-height:74vh;margin:0 auto;object-fit:contain;background:#14100c;}
+.post-figure figcaption{padding:11px 20px;text-align:center;font-size:.85rem;color:var(--text-muted);background:var(--bg-beige);border-top:1px solid rgba(160,82,45,.12);}

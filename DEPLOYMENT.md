@@ -81,3 +81,48 @@ Sau khi thêm record:
 
 > Nếu chưa vào được sau khi cấu hình: đợi thêm (tối đa 24h), hoặc xoá cache DNS máy
 > (`sudo dscacheutil -flushcache` trên macOS) rồi thử lại.
+
+---
+
+## PHƯƠNG ÁN C — Auto-deploy: push GitHub → tự lên Hostinger (KHUYẾN NGHỊ)
+
+Repo đã có sẵn workflow `.github/workflows/deploy.yml`. Sau khi khai báo 4 secrets,
+**mỗi lần `git push` lên `main` sẽ tự đồng bộ toàn bộ website lên Hostinger qua FTP**
+(khoảng 1 phút). Không cần upload tay nữa.
+
+### Bước 1 — Lấy thông tin FTP trong hPanel
+hPanel → **Websites → (chọn hosting) → Files → FTP Accounts**:
+- **FTP host** (vd `ftp.topleadrecruit.com` hoặc IP hosting)
+- **Username** (tạo mới một FTP account nếu chưa có)
+- **Password** (đặt/đổi tại đây)
+- **Thư mục web của subdomain** — mở **File Manager**, vào đúng thư mục đang chứa
+  `website.topleadrecruit.com` (thường là `public_html/` hoặc
+  `domains/topleadrecruit.com/public_html/website/`). Ghi lại đường dẫn này,
+  **phải có dấu `/` ở cuối**.
+
+### Bước 2 — Thêm secrets vào GitHub
+Repo trên GitHub → **Settings → Secrets and variables → Actions → New repository secret**.
+Thêm đúng 4 cái (tên viết y hệt):
+
+| Secret | Giá trị |
+|---|---|
+| `FTP_SERVER` | host FTP (vd `ftp.topleadrecruit.com`) |
+| `FTP_USERNAME` | tài khoản FTP |
+| `FTP_PASSWORD` | mật khẩu FTP |
+| `FTP_SERVER_DIR` | thư mục web, có `/` cuối (vd `/public_html/`) |
+
+> Mật khẩu bạn tự dán vào GitHub — mình (Claude) không cần và không thấy nó.
+
+### Bước 3 — Chạy
+- Tự động: mọi lần push lên `main`.
+- Chạy tay lần đầu để test: tab **Actions → Deploy website to Hostinger (FTP) → Run workflow**.
+
+### Lưu ý
+- Trước khi thêm secrets, workflow sẽ **báo đỏ** ở tab Actions (thiếu thông tin FTP) —
+  đây là bình thường, không ảnh hưởng gì.
+- Nếu kết nối FTPS lỗi chứng chỉ: mở `.github/workflows/deploy.yml`, đổi
+  `protocol: ftps` → `protocol: ftp` rồi push lại.
+- Workflow **chỉ upload** file mới/đổi, **không xoá** file lạ trên server ở lần chạy đầu →
+  an toàn. Các file dev (`*.md`, `server.js`, `.github/`, `.claude/`, video gốc) đã được loại trừ.
+- Nếu website nằm ở **subdomain** `website.topleadrecruit.com`, `FTP_SERVER_DIR` phải trỏ
+  đúng thư mục của subdomain đó (không phải thư mục CRM ở apex).

@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Raw pasted source media (bản dùng thật nằm ở assets/posts/secc-fieldtrip.mp4)
+assets/8063563824034.mp4
+
+# Local Claude Code project files
+.claude/

@@ -1,0 +1,45 @@
+name: Deploy website to Hostinger (FTP)
+
+# Mỗi lần push lên nhánh main -> tự đồng bộ toàn bộ website lên Hostinger qua FTP.
+# Cần khai báo 4 secrets trong repo (Settings -> Secrets and variables -> Actions):
+#   FTP_SERVER      : host FTP, vd  ftp.topleadrecruit.com  hoặc IP hosting
+#   FTP_USERNAME    : tài khoản FTP tạo trong hPanel
+#   FTP_PASSWORD    : mật khẩu FTP
+#   FTP_SERVER_DIR  : thư mục web của subdomain, PHẢI có dấu "/" ở cuối
+#                     vd  /public_html/   hoặc  /domains/topleadrecruit.com/public_html/website/
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:        # cho phép bấm "Run workflow" chạy tay trong tab Actions
+
+concurrency:
+  group: ftp-deploy
+  cancel-in-progress: true
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Sync files to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server:     ${{ secrets.FTP_SERVER }}
+          username:   ${{ secrets.FTP_USERNAME }}
+          password:   ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          protocol:   ftps      # bảo mật hơn; nếu kết nối lỗi cert, đổi thành: ftp
+          timeout:    120000
+          # Không upload các file dev / không thuộc website:
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/node_modules/**
+            **/.DS_Store
+            **/*.md
+            **/server.js
+            **/assets/8063563824034.mp4
